@@ -1,1 +1,3 @@
 export const LOGIN_DETAILS = "LOGIN_DETAILS"
+export const CONFIG_FETCH = "CONFIG_FETCH"
+

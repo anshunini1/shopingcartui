@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {
-    LOGIN_DETAILS
+    LOGIN_DETAILS,
   } from "./types";
 //var url= ["https://", window.location.hostname,"/embed"].join("");
 var url=window.api_endpoint = ["http://","localhost:7800"].join("");

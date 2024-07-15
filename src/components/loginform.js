@@ -9,6 +9,7 @@ import { toast } from 'react-toastify';
 import {
     useNavigate
 } from "react-router-dom";
+import { encryptString } from '../helpers/crypto';
 const Loginform = (props) =>{
     const navigate = useNavigate()
     const data = useSelector(state => state.auth.token);
@@ -58,7 +59,19 @@ else if(data &&  data.hasOwnProperty('accesstoken'))
                 email:getValues("email"),
                 password :getValues("password")
             }
-         dispatch(Login(body))
+            encryptString(JSON.stringify(body)).then((data)=>
+            {
+            dispatch(Login({"M":data}))}
+        ).catch((err)=> toast.error("Unable to fetch config.", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined
+          }))
+        
         }
         if(props.authtype==="register")
             {
@@ -66,7 +79,19 @@ else if(data &&  data.hasOwnProperty('accesstoken'))
                     email:getValues("email"),
                     password :getValues("password")
                 }
-             dispatch(Register(body))
+                encryptString(JSON.stringify(body)).then((data)=>
+                    {
+                    dispatch(Register({"M":data}))}
+                ).catch((err)=> toast.error("Unable to fetch config.", {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined
+                  }))
+       
             }
        
     };
